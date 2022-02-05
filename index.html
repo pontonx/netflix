@@ -4,19 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📷 Movie Finder</title>
+    <title>Strona główna - Netflix</title>
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <input type="text" id="search" value="Spider-Man" placeholder="Find movies...">
-
-    <input type="submit" value="Find" id="searchbutton">
+    <header>
+        <img src="logo.png" alt="logo">
+        <ul>
+            <li style="font-weight: 600;">Strona główna</li>
+            <li>Seriale i programy</li>
+            <li>Filmy</li>
+            <li>Nowe i popularne</li>
+            <li>Moja lista</li>
+        </ul>
+        <!-- <img src="lupa.svg" alt=""> -->
+    </header>
 
     <main>
-        <div class="films">
-
+        <div class="popular">
+            Popularne teraz<br>
+            <div class="films">
+    
+            </div>
+        </div>
+        <div class="drama">
+            Dramaty<br>
+            <div class="films">
+    
+            </div>
+        </div>
+        <div class="comedy">
+            Komedie<br>
+            <div class="films">
+    
+            </div>
+        </div>
+        <div class="horror">
+            Horror<br>
+            <div class="films">
+    
+            </div>
+        </div>
+        <div class="animated">
+            Animowane<br>
+            <div class="films">
+    
+            </div>
         </div>
     </main>
+
+    <!-- <input type="text" id="search" value="Spider-Man" placeholder="Find movies...">
+
+    <input type="submit" value="Find" id="searchbutton"> -->
 
     <div id="details" class="hidden"></div>
 

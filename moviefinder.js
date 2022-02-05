@@ -1,57 +1,128 @@
-let findButton = document.querySelector("#searchbutton");
-let film = document.querySelector(".films");
-let details = document.querySelector("#details");
+let filmPopular = document.querySelector(".popular .films");
+let filmDrama = document.querySelector(".drama .films");
+let filmComedy = document.querySelector(".comedy .films");
+let filmHorror = document.querySelector(".horror .films");
+let filmAnimated = document.querySelector(".animated .films");
 
-findButton.addEventListener("click", SearchMovie);
+PopularNow();
+DramaFilms();
+ComedyFilms();
+HorrorFilms();
+AnimatedFilms();
 
-function SearchMovie() {
-
-    let search = document.querySelector("#search").value;
-
-    fetch('https://api.themoviedb.org/3/search/movie?api_key=3d569174bc2693edc30f38898abab3e4&language=en-US&query='+search+'&page=1&include_adult=false')
+function PopularNow(){
+    
+    fetch('https://api.themoviedb.org/3/trending/all/week?api_key=3d569174bc2693edc30f38898abab3e4')
     .then(response => response.json())
     .then(data => {
-        console.log("MOVIES FOUND: ");
         console.log(data);
 
-        film.innerHTML = "";
+        filmPopular.innerHTML = "";
 
         for (i = 0; i < data.results.length; i++) {
             
             const element = data.results[i];
             
             if(element.poster_path)
-            film.innerHTML += 
-            "<div class='film' onclick='showDetails("+element.id+");'> " +
-            "<img class='filmImage' src='https://www.themoviedb.org/t/p/w1280"+element.poster_path+"'</img>" +
-            "<h1>"+element.original_title+"</h1>" +
-            "<p>&#11088;: " + element.vote_average + "/10</p>" + 
+            filmPopular.innerHTML += 
+            "<div class='film'>" +
+            "<img class='filmImage' src='https://www.themoviedb.org/t/p/w1280"+element.backdrop_path+"'</img>" +
+            "<div class='info'></div>"+
             "</div>";
 
         }
-    });
-}
-
-function showDetails(movie) {
-    fetch('https://api.themoviedb.org/3/movie/'+movie+'?api_key=3d569174bc2693edc30f38898abab3e4&language=en-US')
-    .then(response => response.json())
-    .then(movieData => {
-        console.log(movieData.title.toString().toUpperCase() +" DETAILS: ");
-        console.log(movieData);
-
-        details.innerHTML = 
-        "<div class='x'>❌</div>" +
-        "<h1>" + movieData.title + "</h1>" +
-        "<p>Overview: " + movieData.overview + "</p>" +
-        "<p>Release date: " + movieData.release_date + "</p>" +
-        "<p>Runtime: " + (parseFloat(movieData.runtime, 2)/60).toFixed(2) + "h</p>";
-
-        let x = document.querySelector(".x");
-
-        x.addEventListener("click", function() {
-            details.classList.toggle("hidden");
-        });
-
-        details.classList.toggle("hidden");
     })
 }
+
+function DramaFilms() {
+    fetch('https://api.themoviedb.org/3/discover/movie?api_key=3d569174bc2693edc30f38898abab3e4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=18&with_watch_monetization_types=free')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        filmDrama.innerHTML = "";
+
+        for (i = 0; i < data.results.length; i++) {
+            
+            const element = data.results[i];
+            
+            if(element.poster_path)
+            filmDrama.innerHTML += 
+            "<div class='film'>" +
+            "<img class='filmImage' src='https://www.themoviedb.org/t/p/w1280"+element.backdrop_path+"'</img>" +
+            "<div class='info'></div>"+
+            "</div>";
+
+        }
+    })
+}
+
+function ComedyFilms() {
+    fetch('https://api.themoviedb.org/3/discover/movie?api_key=3d569174bc2693edc30f38898abab3e4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=35&with_watch_monetization_types=flatrate')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        filmComedy.innerHTML = "";
+
+        for (i = 0; i < data.results.length; i++) {
+            
+            const element = data.results[i];
+            
+            if(element.backdrop_path)
+            filmComedy.innerHTML += 
+            "<div class='film'>" +
+            "<img class='filmImage' src='https://www.themoviedb.org/t/p/w1280"+element.backdrop_path+"'</img>" +
+            "<div class='info'></div>"+
+            "</div>";
+
+        }
+    })
+}
+
+function HorrorFilms() {
+    fetch('https://api.themoviedb.org/3/discover/movie?api_key=3d569174bc2693edc30f38898abab3e4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=27&with_watch_monetization_types=flatrate')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        filmHorror.innerHTML = "";
+
+        for (i = 0; i < data.results.length; i++) {
+            
+            const element = data.results[i];
+            
+            if(element.backdrop_path)
+            filmHorror.innerHTML += 
+            "<div class='film'>" +
+            "<img class='filmImage' src='https://www.themoviedb.org/t/p/w1280"+element.backdrop_path+"'</img>" +
+            "<div class='info'></div>"+
+            "</div>";
+
+        }
+    })
+}
+
+function AnimatedFilms() {
+    fetch('https://api.themoviedb.org/3/discover/movie?api_key=3d569174bc2693edc30f38898abab3e4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=16&with_watch_monetization_types=flatrate')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        filmAnimated.innerHTML = "";
+
+        for (i = 0; i < data.results.length; i++) {
+            
+            const element = data.results[i];
+            
+            if(element.backdrop_path)
+            filmAnimated.innerHTML += 
+            "<div class='film'>" +
+            "<img class='filmImage' src='https://www.themoviedb.org/t/p/w1280"+element.backdrop_path+"'</img>" +
+            "<div class='info'></div>"+
+            "</div>";
+
+        }
+    })
+}
+
